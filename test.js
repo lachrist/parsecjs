@@ -22,10 +22,10 @@ function test (code, input, expected) {
 }
 
 test("Parsec.Number", "123.456", 123.456);
-test("Parsec.String", "\"abc\"", "abc");
+test("Parsec.DoubleQuotedString", "\"abc\"", "abc");
 test("Parsec.literal('yo')", "yo", null);
-test("Parsec.anyof('abc')", "a", "a");
+test("Parsec.oneof('abc')", "a", "a");
 test("Parsec.many(Parsec.literal('a'))", "aaa", [null,null,null]);
-test("Parsec.Blanks", " \t ", [" ", "\t", " "]);
+test("Parsec.Spaces", " \t ", [" ", "\t", " "]);
 test("Parsec.keyword('yo')", "  yo", null);
-test("Parsec.separate(Parsec.Number, ',')", "1,2,3", [1,2,3]);
+test("Parsec.separate(Parsec.Number, Parsec.keyword(','))", "1,2,3", [1,2,3]);
