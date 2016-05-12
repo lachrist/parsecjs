@@ -11,9 +11,8 @@ function compare (x, y) {
   return x === y;
 }
 
-function test (code, input, expected) {
-  console.log(code + " >> " + input + " >> " + expected);
-  var parser = eval(code);
+function test (parser, input, expected) {
+  console.log(Parsec.description(parser) + " >> " + input + " >> " + expected);
   var [error, result, rest] = parser(input);
   if (error || rest)
     throw error || ("Rest: " + rest);
@@ -21,11 +20,11 @@ function test (code, input, expected) {
     throw "Expected " + expected + ", got " + result;
 }
 
-test("Parsec.Number", "123.456", 123.456);
-test("Parsec.DoubleQuotedString", "\"abc\"", "abc");
-test("Parsec.literal('yo')", "yo", null);
-test("Parsec.oneof('abc')", "a", "a");
-test("Parsec.many(Parsec.literal('a'))", "aaa", [null,null,null]);
-test("Parsec.Spaces", " \t ", [" ", "\t", " "]);
-test("Parsec.keyword('yo')", "  yo", null);
-test("Parsec.separate(Parsec.Number, Parsec.keyword(','))", "1,2,3", [1,2,3]);
+test(Parsec.Number, "123.456", 123.456);
+test(Parsec.DoubleQuotedString, "\"abc\"", "abc");
+test(Parsec.literal('yo'), "yo", null);
+test(Parsec.oneof('abc'), "a", "a");
+test(Parsec.many(Parsec.literal('a')), "aaa", [null,null,null]);
+test(Parsec.Spaces, " \t ", [" ", "\t", " "]);
+test(Parsec.keyword('yo'), "  yo", null);
+test(Parsec.separate(Parsec.Number, Parsec.keyword(',')), "1,2,3", [1,2,3]);

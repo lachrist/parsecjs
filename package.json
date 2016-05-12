@@ -1,6 +1,6 @@
 { "name" : "parsecjs"
 , "description" : "Parsec-inspired parser library"
-, "version" : "0.0.1"
+, "version" : "0.0.2"
 , "author" : {"name":"Laurent Christophe", "email":"lachrist@vub.ac.be"}
 , "repository": "lachrist/parsecjs"
 , "homepage": "http://github.com/lachrist/parsecjs"
