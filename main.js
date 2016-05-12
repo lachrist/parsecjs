@@ -27,6 +27,8 @@ exports.debug = () => {
 //////////////////////////////////
 
 exports.bind = (parser, constructor) => {
+  if (typeof parser !== "function")
+    console.log(new Error("ROGAN"));
   return (input) => {
     var [error, result, rest] = parser(input);
     return error ? [error, null, rest] : (constructor(result)(rest));
